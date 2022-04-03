@@ -1,0 +1,39 @@
+---
+# tasks file for vhost_deploy
+  - name: make sites dir
+    file: 
+       path: "{{ item }}"
+       state: directory
+       mode: '0755'
+       recurse: yes
+    loop: 
+         - "{{ destin_folder_site }}/v1"
+
+  - name: generating  vhost's config  & index.html
+    template:
+          src: "{{ item.src }}"
+          dest: "{{ item.dest }}"
+          mode: "{{ item.mode }}"
+    with_items:
+           -  { src: "v1.conf.j2" , dest: "{{ destin_folder_conf }}/v1.conf", mode: "644", server_name: "{{ server_name[0] }}", hport: "{{ hport[0] }}", webserver: "{{ webserver[0] }}"}
+           -  { src: "v1_index.html.j2" , dest: "{{ destin_folder_site }}/v1/index.html", mode: "644"}
+    notify:  
+       - Reload service nginx    
+
+  - name: make a simlink
+    file:
+       src: "{{ item.src }}"
+       dest: "{{ item.dest }}"
+       owner: root
+       group: root
+       state: link
+    loop:
+         - { src: "{{ destin_folder_conf }}/v1.conf", dest: "{{ enabled }}/v1.conf" }
+    
+    notify:  
+       - Reload service nginx   
+
+     
+       
+      
+       

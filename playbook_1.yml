@@ -1,0 +1,16 @@
+---
+  - name: ans_13
+    hosts: all
+    roles: 
+      - role: nginx_deploy
+      - role: vhost_deploy
+    
+      
+    
+ 
+       
+        
+     
+     
+       
+    

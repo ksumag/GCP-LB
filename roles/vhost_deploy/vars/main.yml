@@ -1,0 +1,14 @@
+---
+# vars file for vhost_deploy
+  destin_folder_site: /var/www/html
+  destin_folder_conf: /etc/nginx/conf.d
+  enabled:  /etc/nginx/sites-enabled
+  webserver:
+     - v1
+  
+  server_name: "{{ inventory_hostname }}" 
+  
+  hport: 
+  
+     - 80
+  

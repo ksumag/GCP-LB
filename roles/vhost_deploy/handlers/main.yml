@@ -1,0 +1,11 @@
+---
+# handlers file for vhost_deploy
+  - name: Starting service nginx
+    service: 
+         name: nginx
+         state: started
+         enabled: yes
+  - name: Reload service nginx
+    service: 
+        name: nginx
+        state: reloaded

@@ -1,0 +1,17 @@
+
+server {
+        
+        listen {{ item.hport }}; 
+       
+ 
+        root /var/www/html/{{ item.webserver }};
+       
+ 
+        server_name {{ server_name }} www.{{ server_name }};
+        
+          
+       
+        location / {
+              index index.php index.html;   
+        }
+}
